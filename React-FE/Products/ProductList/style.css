@@ -1,0 +1,30 @@
+main {
+    text-align: center;
+}
+
+#section-grid {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
+#product-card {
+    background-color: whitesmoke;
+    flex-grow: 1;
+    width: 19%;
+    max-width: 19%;
+    margin:0.5%;
+    margin-top: 3%;
+}
+
+#product-card img {
+    width:100%;
+}
+
+#product-card button{
+    background-color: tomato;
+}
+
+#horizontal-line {
+    margin: 0 20%;
+}
