@@ -7,19 +7,19 @@ export default () => {
     return (
         <nav>
         <ul>
-            <li><Link>Home</Link></li>
-            <li><Link>About</Link></li>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/about'>About</Link></li>
             <li class="logo"><Link>PIZZINI</Link></li>
-            <li><Link>Delivery</Link></li>
-            <li><Link>Contact</Link></li>
+            <li><Link to='/delivery'>Delivery</Link></li>
+            <li><Link to='/contact'>Contact</Link></li>
         </ul>
 
         <ul id="second-nav">
-            <li><Link>Menu</Link></li>
-            <li><Link>Menu</Link></li>
-            <li><Link>Menu</Link></li>
-            <li><Link>Menu</Link></li>
-            <li><Link>Menu</Link></li>
+            <li><Link to="login">Login</Link></li>
+            <li><Link to="register">Register</Link></li>
+            <li><Link to="products">Products</Link></li>
+            <li><Link to="login">Menu</Link></li>
+            <li><Link to="login">Menu</Link></li>
         </ul>
     </nav>
 
