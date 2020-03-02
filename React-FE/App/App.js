@@ -11,21 +11,9 @@ import ProductList from '../Products/ProductList';
 import LoginForm from '../User/Login/LoginForm'
 import RegisterForm from '../User/Register/RegisterForm'
 import ProductDetails from '../Products/ProductDetails/ProductDetails';
+import ProductCreate from '../Products/ProductCreate/'
 
 export default function App() {
-
-  let params = [
-    {
-      "name": "C-3PO",
-      "description": "167",
-      "imageUrl": "https://mrpizza.bg/images/products/tall_products-691.png"
-    },
-    {
-          "name": "C-3PO",
-          "description": "167",
-          "imageUrl": "https://mrpizza.bg/images/products/tall_products-691.png"
-        }
-  ]
 
   return (
     <Router>
@@ -36,7 +24,7 @@ export default function App() {
         <Switch>
 
           <Route path="/" exact>
-            < ProductList params={params} />
+            < ProductList/>
           </Route>
 
           <Route path="/about" exact>
@@ -45,6 +33,10 @@ export default function App() {
 
           <Route path="/products" exact>
             {/* <ProductList/> */}
+          </Route>
+
+          <Route path="/product/create" exact>
+            <ProductCreate/>
           </Route>
 
           <Route path="/product/view/:id" exact>
