@@ -28,3 +28,7 @@ main {
 #horizontal-line {
     margin: 0 20%;
 }
+
+button {
+    color:green;
+}

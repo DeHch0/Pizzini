@@ -1,15 +1,21 @@
 import React, {useState} from 'react' ;
+// import Requester from '../../Requester';
 
-const LoginForm  = () => {
+const LoginForm  = (login) => {
 
+    console.log(login);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = (event) => {
         event.preventDefault()
-        // console.log(username);
-        // console.log(password);
-        // console.log('submited');
+
+        const data = {
+            username,
+            password
+        }
+
+        login.login(data);
     }
 
     const handleOnChange = ({ target }) => {

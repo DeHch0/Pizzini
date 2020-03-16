@@ -8,7 +8,7 @@ const ProductCard = (para) => {
     let params = para.params;
     
     return (
-        <Link id="product-card" to='product/view/id'>
+        <Link id="product-card" to={"product/view/" + params._id}>
             <div id="product-img">
                 <img src={params.imageUrl} alt=""/>
             </div>

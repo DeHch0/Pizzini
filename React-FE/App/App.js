@@ -5,6 +5,7 @@ import {
   Route,
   // Link
 } from "react-router-dom";
+import { login as userLogin } from '../Services/UserService';
 import Header from '../Common/Header';
 import About from '../Common/About';
 import ProductList from '../Products/ProductList';
@@ -14,6 +15,14 @@ import ProductDetails from '../Products/ProductDetails/ProductDetails';
 import ProductCreate from '../Products/ProductCreate/'
 
 export default function App() {
+
+  const login = (data) => {
+    return userLogin(data).then(() => {
+
+      // history.push('/');
+      // console.log('after setIsLogged');
+    });
+  }
 
   return (
     <Router>
@@ -60,7 +69,7 @@ export default function App() {
           </Route>
 
           <Route path="/login">
-            <LoginForm />
+            <LoginForm login={login}/>
           </Route>
 
           <Route path="/register">

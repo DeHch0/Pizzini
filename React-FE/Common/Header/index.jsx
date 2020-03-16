@@ -5,23 +5,29 @@ import {
   } from "react-router-dom";
 export default () => {
     return (
-        <nav>
-        <ul>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/about'>About</Link></li>
-            <li class="logo"><Link>PIZZINI</Link></li>
-            <li><Link to='/delivery'>Delivery</Link></li>
-            <li><Link to='/contact'>Contact</Link></li>
-        </ul>
+        <nav className='nav-main'>
 
-        <ul id="second-nav">
-            <li><Link to="login">Login</Link></li>
-            <li><Link to="register">Register</Link></li>
-            <li><Link to="products">Products</Link></li>
-            <li><Link to="login">Menu</Link></li>
-            <li><Link to="login">Menu</Link></li>
-        </ul>
-    </nav>
+            <div className="heading-navbar">
+                <div className="order">
+                <Link>Поръчайте на тел.: 088 868 6333</Link>
+                </div>
+
+            <div className="user">
+                <Link>Login</Link>|
+                <Link>Register</Link>
+            </div>
+            </div>
+
+            <div className="navigation">
+            <ul>
+                <li><Link to="#">Начало</Link></li>
+                <li><Link to="#">Начало</Link></li>
+                <li><Link to="#">Начало</Link></li>
+                <li><Link to="#">Начало</Link></li>
+            </ul>
+            </div>
+            <h2>Меню</h2>
+        </nav>
 
     )
 }

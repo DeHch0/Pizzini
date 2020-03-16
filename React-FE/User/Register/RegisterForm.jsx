@@ -1,14 +1,22 @@
 import React, {useState} from 'react';
+import Requester from '../../Requester';
 
 
 const RegisterForm = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const [rePassword, setRePassword] = useState('');
 
     const handleLogin = (event) => {
         event.preventDefault()
+        const data = {
+            username,
+            email,
+            password,
+        }
+        Requester('user/register', 'POST' , data)
         // console.log(username);
         // console.log(password);
         // console.log(rePassword);
@@ -20,6 +28,7 @@ const RegisterForm = () => {
             case 'username': {setUsername(target.value); break ;}
             case 'password': {setPassword(target.value); break ;}
             case 're-password': {setRePassword(target.value); break ;}
+            case 'email': {setEmail(target.value); break ;}
             default: {return ('');}
         }
     }
@@ -43,6 +52,18 @@ const RegisterForm = () => {
                             placeholder="Username..."
                             value={username}
                             onChange={handleOnChange} />
+                    </div>
+
+                    <div class="email">
+                        <label for="email"></label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Enter Email..."
+                            onChange={handleOnChange}
+                            value={email}
+                        />
                     </div>
 
                     <div class="password">

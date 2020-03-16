@@ -7,12 +7,44 @@
 }
 
 body {
-    margin: 0;
-    background-color: #307470;
+    background-image: radial-gradient(#977474 5%, transparent 20%),
+    radial-gradient(rgb(138, 122, 122) 5%, transparent 20%);
+background-color: whitesmoke;
+background-position: 0 , 0 ,2px 5px;
+background-size: 13px 13px;
+    /* margin: 0;
+    background-color: whitesmoke; */
 }
-nav {
+.nav-main {
+    background-image: url('https://mrpizza.bg/img/header-listing.jpg');
     text-align: center;
-    background-color: #42476d;
+    /* background-color: #42476d; */
+}
+
+.heading-navbar {
+    background-color: #000;
+    opacity: 0.6;
+    text-align: left;
+    padding: 0.25rem;
+}
+
+.order {
+    display:inline-block;
+    /* position: absolute; */
+    /* left:0;
+    top:0; */
+    padding: 0 2%;
+}
+
+.user {
+    float: right;
+    /* vertical-align:center;    */
+    padding: 0 3%;
+}
+
+.navigation {
+    margin: 0 auto;
+    text-align: center;
 }
 
 ul {
@@ -29,7 +61,7 @@ li {
 
 a {
     text-decoration: none;
-    color: #9ae17b;
+    color: white;
 }
 
 .logo {
