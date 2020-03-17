@@ -22,10 +22,6 @@ const productSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.Number
     },
 
-    brand: {
-        type: mongoose.SchemaTypes.String
-    },
-
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User'

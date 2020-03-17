@@ -13,14 +13,14 @@ export default () => {
                 </div>
 
             <div className="user">
-                <Link>Login</Link>|
-                <Link>Register</Link>
+                <Link to="/login">Login</Link>|
+                <Link to="/register">Register</Link>
             </div>
             </div>
 
             <div className="navigation">
             <ul>
-                <li><Link to="#">Начало</Link></li>
+                <li><Link to="/">Начало</Link></li>
                 <li><Link to="#">Начало</Link></li>
                 <li><Link to="#">Начало</Link></li>
                 <li><Link to="#">Начало</Link></li>

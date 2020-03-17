@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState , useEffect} from 'react';
 import ProductCard from '../ProductCard';
 import Requester from '../../Requester/'
 import './style.css'
@@ -7,10 +7,14 @@ export default () => {
 
         const [params, setParams] = useState('');
 
+        useEffect(() => {
         Requester('products')
         .then(data => data.json())
         .then(data => setParams(data))
         .catch(err => console.log(err));
+        } , [])
+
+
     return (
         <main>
             <div id="section-grid">

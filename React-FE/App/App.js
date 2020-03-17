@@ -13,6 +13,9 @@ import LoginForm from '../User/Login/LoginForm'
 import RegisterForm from '../User/Register/RegisterForm'
 import ProductDetails from '../Products/ProductDetails/ProductDetails';
 import ProductCreate from '../Products/ProductCreate/'
+import ProductEdit from '../Products/ProductEdit/'
+import CategoryCreate from '../Category/Create';
+import ReadCategories from '../Category/Read';
 
 export default function App() {
 
@@ -53,7 +56,7 @@ export default function App() {
           </Route>
 
           <Route path="/product/edit/:id" exact>
-            {/* <ProductEdit/> */}
+            <ProductEdit/>
           </Route>
 
           <Route path="/orders" exact>
@@ -62,6 +65,14 @@ export default function App() {
 
           <Route path="/orders/:id" exact>
             {/* <OrderDetails/> */}
+          </Route>
+
+          <Route path="/category/create" exact>
+            <CategoryCreate/>
+          </Route>
+          
+          <Route path="/category" exact>
+            <ReadCategories/>
           </Route>
 
           <Route path="/users" exact>

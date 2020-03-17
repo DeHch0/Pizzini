@@ -1,27 +1,37 @@
-import React , { useState } from 'react';
-import Requester from '../../Requester'
-import cookie from 'react-cookies';
-const ProductCreate = () => {
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [price, setPrice] = useState(0)
-    const [imageUrl, setImageUrl] = useState('')
+import React, {useState , useEffect} from 'react';
+import Requester from '../../Requester';
+
+const Edit = () => {
+
+    const [name , setName] = useState('');
+    const [description , setDescription] = useState('');
+    const [imageUrl , setImageUrl] = useState('');
+    const [price , setPrice] = useState('');
+    let id = document.URL.substr(document.URL.lastIndexOf('/') + 1);
+    useEffect(() => {
+        Requester(`products/${id}`, 'GET')
+        .then(data => data.json())
+        .then(data=> {
+            setName(data.name);
+            setDescription(data.description);
+            setImageUrl(data.imageUrl);
+            setPrice(data.price);
+        })
+
+    }, [])
 
     const handleLogin = (event) => {
         event.preventDefault()
-        let creator = cookie.select(/\busername?\b/g);
-        console.log(creator);
-        let data = {
-            name: name,
-            price: price,
-            description: description,
-            imageUrl: imageUrl,
-            createdBy: creator
+
+        const data = {
+            name,
+            description,
+            imageUrl,
+            price: +price
         }
 
-        Requester('products' , 'POST' , data)
-        .then(data => {console.log(data)})
-        .then(err => {console.log(err)})
+        console.log(data);
+
     }
 
     const handleOnChange = ({ target }) => {
@@ -35,13 +45,14 @@ const ProductCreate = () => {
     }
 
     return (
+    
         <main>
         <div class="wrapper">
 
 
             <div class="login-form">
 
-                <h2>Login</h2>
+                <h2>Edit</h2>
                 <form onSubmit={handleLogin}>
 
                     <div class="name">
@@ -91,16 +102,14 @@ const ProductCreate = () => {
                         />
                     </div>
 
-                    <button className="login-button" type="submit">Login</button>
+                    <button className="login-button" type="submit">Edit</button>
                 </form>
             </div>
         </div>
 
     </main>
 
-
-
     )
 }
 
-export default ProductCreate;
+export default Edit
