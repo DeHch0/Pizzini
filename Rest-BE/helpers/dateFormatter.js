@@ -4,9 +4,6 @@ function format(date) {
         day = '' + d.getDate(),
         year = d.getFullYear();
 
-    console.log(typeof month);
-    console.log(month);
-
     switch (month) {
         case '1':
             month = 'Jan';

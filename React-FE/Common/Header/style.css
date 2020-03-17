@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,500i,700,700i,900,900i&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Sofia&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bellota+Text:300,300i,400,400i,700,700i&display=swap&subset=cyrillic');
 
 * {
     padding: 0;
@@ -12,11 +13,14 @@ body {
 background-color: rgb(247, 247, 247);
 background-position: 0 , 0 ,2px 5px;
 background-size: 13px 13px;
+font-family: 'Bellota Text', 'sans-serif';
     /* margin: 0;
     background-color: whitesmoke; */
 }
 .nav-main {
     background-image: url('https://mrpizza.bg/img/header-listing.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     text-align: center;
     /* background-color: #42476d; */
 }
@@ -45,6 +49,7 @@ background-size: 13px 13px;
 .navigation {
     margin: 0 auto;
     text-align: center;
+    padding: 2% 0;
 }
 
 ul {
@@ -56,12 +61,14 @@ ul {
 
 li {
     display: inline-block;
-    padding: 1%;
+    padding: 2% 3%;
 }
 
 a {
+    font-size: 1rem;
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
+    font-weight: 400;
 }
 
 .logo {
@@ -72,4 +79,12 @@ a {
 
 #second-nav {
  background: #292b4e;   
+}
+
+.path {
+    color: rgb(250, 41, 145);
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    padding: 4% 0 7% 0;
 }

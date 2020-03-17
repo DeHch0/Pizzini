@@ -7,7 +7,12 @@ const Edit = () => {
     const [description , setDescription] = useState('');
     const [imageUrl , setImageUrl] = useState('');
     const [price , setPrice] = useState('');
+    const [category, setCategory] = useState('');
+
+    const [ categories, setCategories ] = useState('');
+
     let id = document.URL.substr(document.URL.lastIndexOf('/') + 1);
+
     useEffect(() => {
         Requester(`products/${id}`, 'GET')
         .then(data => data.json())
@@ -18,19 +23,25 @@ const Edit = () => {
             setPrice(data.price);
         })
 
+        Requester('category')
+        .then(data => data.json())
+        .then(data => setCategories(data));
+
     }, [])
 
     const handleLogin = (event) => {
         event.preventDefault()
 
         const data = {
+            id,
             name,
             description,
             imageUrl,
-            price: +price
+            price: +price,
+            category
         }
 
-        console.log(data);
+        Requester('products', 'PUT' , data)
 
     }
 
@@ -40,6 +51,7 @@ const Edit = () => {
             case 'description': {setDescription(target.value); break ;}
             case 'imageUrl': {setImageUrl(target.value); break ;}
             case 'price': {setPrice(target.value); break ;}
+            case 'category': {setCategory(target.value); break ;}
             default: {return ('');}
         }
     }
@@ -101,6 +113,18 @@ const Edit = () => {
                             value={price}
                         />
                     </div>
+
+                    <label htmlFor="category">Category: </label>
+              {categories ?
+              <select name="category" onChange={handleOnChange} required id="category">
+              <option selected='selected' value='' ></option>
+                  {categories.map(category => {
+                 return  <option  value={category._id}>{category.name}</option>
+                  })}
+                  
+              </select>
+              : null }
+              <br />
 
                     <button className="login-button" type="submit">Edit</button>
                 </form>

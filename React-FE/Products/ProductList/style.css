@@ -11,18 +11,17 @@ main {
 #product-card {
     background-color: whitesmoke;
     flex-grow: 1;
-    width: 19%;
-    max-width: 19%;
+    width: 21%;
+    max-width: 21%;
+    min-width: 270px;
     margin:0.5%;
     margin-top: 3%;
+    color: #000;
+    /* text-align: left; */
 }
 
 #product-card img {
     width:100%;
-}
-
-#product-card button{
-    background-color: tomato;
 }
 
 #horizontal-line {
@@ -30,5 +29,28 @@ main {
 }
 
 button {
-    color:green;
+    text-align: center;
+    background-color: tomato;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4% 0 0 1%;
+}
+
+#product-name {
+    padding: 1%;
+    text-align: left;
+    font-size: 2.20rem;
+    font-weight: bold;
+}
+
+#product-desc {
+    padding: 1%;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: bold;
 }

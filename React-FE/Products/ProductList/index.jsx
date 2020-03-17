@@ -8,13 +8,13 @@ export default () => {
         const [params, setParams] = useState('');
 
         useEffect(() => {
-        Requester('products')
+        Requester()
         .then(data => data.json())
         .then(data => setParams(data))
         .catch(err => console.log(err));
         } , [])
 
-
+        console.log(params);
     return (
         <main>
             <div id="section-grid">

@@ -9,24 +9,27 @@ export default () => {
 
             <div className="heading-navbar">
                 <div className="order">
-                <Link>Поръчайте на тел.: 088 868 6333</Link>
+                <Link>Поръчки: 088 868 6333</Link>
                 </div>
 
             <div className="user">
-                <Link to="/login">Login</Link>|
-                <Link to="/register">Register</Link>
+                <Link to="/register">Регистрация</Link>
+                |
+                <Link to="/login">Вход</Link>
             </div>
             </div>
 
             <div className="navigation">
             <ul>
-                <li><Link to="/">Начало</Link></li>
-                <li><Link to="#">Начало</Link></li>
-                <li><Link to="#">Начало</Link></li>
-                <li><Link to="#">Начало</Link></li>
+                <li><Link to="/">За нас</Link></li>
+                <li><Link to="#">Меню</Link></li>
+                <li><Link to="#">Ресторанти</Link></li>
+                <li><Link to="#">Контакти</Link></li>
             </ul>
             </div>
-            <h2>Меню</h2>
+
+
+            <h2 className='path'>ПИЦИ</h2>
         </nav>
 
     )
