@@ -16,7 +16,7 @@ const ProductCard = (para) => {
             </div>
             <div id="product-name">{params.name}</div>
             <div id="product-desc">{description}</div>
-            <button>Поръчай</button>
+            <button className="order-product">Поръчай</button>
             </Link>
     )
 }

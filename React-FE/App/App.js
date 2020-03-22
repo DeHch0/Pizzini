@@ -22,8 +22,6 @@ export default function App() {
   const login = (data) => {
     return userLogin(data).then(() => {
 
-      // history.push('/');
-      // console.log('after setIsLogged');
     });
   }
 
