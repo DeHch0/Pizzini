@@ -29,7 +29,7 @@ const register = (req, res) => {
 const login = (req, res) => {
     const {username, password} = req.body;
 
-    console.log(username);
+    console.log('username' + username);
 
     models.User.findOne({ username })
     .then((user) => !!user ? Promise.all([user, user.matchPassword(password)]) : [null, false])
@@ -42,7 +42,9 @@ const login = (req, res) => {
                 const token = jwt.createToken({ id: user._id });
 
                 res
-                    .send(
+                .cookie('username', user.username, {httpOnly: false})
+                .cookie('auth_cookie', token, {httpOnly: false})
+                .send(
                         {
                             'success': 'Logged in successffully !',
                             'auth_cookie': token,
@@ -56,7 +58,30 @@ const login = (req, res) => {
 
 }
 
+function isAdmin(req, res) {
+    let username = req.params.token;
+
+    models.User.findOne({username})
+    .then(data => {
+        if(data !== null) {
+
+            if(data.admin === true) {
+                res.send({result: true}).end();
+            return
+            }
+        }
+        console.log('not Admin');
+        res.send({result: false}).end();
+            return
+    })
+    .catch(err => {
+        res.send({result: err}).end();
+    })
+
+}
+
 module.exports = {
     login,
-    register
+    register,
+    isAdmin
 }

@@ -1,14 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import Requester from '../../Requester'
-import { Link } from "react-router-dom";
+import cookie from 'react-cookies';
+// import { Link } from "react-router-dom";
 import './style.css';
-const ProductDetails = () => {
-
+const ProductDetails = (bucket) => {
     let id = document.URL.substr(document.URL.lastIndexOf('/') + 1);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [price, setPrice] = useState('');
+    const [quantity, setQuantity] = useState(1);
+    const [pricePerOne, setPricePerOne] = useState(0);
+
+    const orderSubmit = (event) => {
+        event.preventDefault();
+        let username = cookie.load('username');
+
+        let data = {
+            id,
+            name,
+            quantity,
+            price,
+            username,
+            status: 'pending'
+        }
+
+
+            sessionStorage.setItem(id, JSON.stringify(data))
+            bucket.bucket();
+        
+
+        console.log(data);
+    }
 
     const orderQuantityOption = () => {
         let arr = [];
@@ -19,6 +42,11 @@ const ProductDetails = () => {
         return arr;
     }
 
+    const changePrice = (event) => {
+        setQuantity(+event.target.value);
+        setPrice(+event.target.value * pricePerOne)
+    }
+
     useEffect(() => {
         Requester(`products/${id}`, 'GET')
             .then(data => data.json())
@@ -27,8 +55,9 @@ const ProductDetails = () => {
                 setDescription(data.description);
                 setImageUrl(data.imageUrl);
                 setPrice(data.price);
+                setPricePerOne(data.price);
             });
-    }, [])
+    }, [id])
     return (
         <div className="product-view">
                 {/* <button className="back"><Link to='/'>X</Link></button> */}
@@ -44,9 +73,9 @@ const ProductDetails = () => {
                 
                     <hr/>
 
-                <form className="form-order">
+                <form onSubmit={orderSubmit} className="form-order">
 
-                    <select id="quantity">
+                    <select onChange={changePrice} id="quantity">
                         {orderQuantityOption()}
                     </select>
 
@@ -54,7 +83,7 @@ const ProductDetails = () => {
                         Цена: {price}лв.
                     </div>
 
-                    <button className="btn-order">Поръчай</button>
+                    <button type="submit" className="btn-order">Поръчай</button>
                 </form>
 
                 <hr/>

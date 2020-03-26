@@ -1,5 +1,6 @@
 import React, {useState} from 'react' ;
 // import Requester from '../../Requester';
+import './style.css';
 
 const LoginForm  = (login) => {
 
@@ -36,8 +37,8 @@ const LoginForm  = (login) => {
                 <h2>Login</h2>
                 <form onSubmit={handleLogin}>
 
-                    <div class="username">
-                        <label for="username"><img src="https://img.icons8.com/windows/96/000000/user.png" alt='Error dur img loading...' /></label>
+                    <div class="input">
+                        <label for="username">Username</label>
                         <input
                             type="text"
                             id="username"
@@ -47,8 +48,8 @@ const LoginForm  = (login) => {
                             onChange={handleOnChange} />
                     </div>
 
-                    <div class="password">
-                        <label for="password"><img src="https://img.icons8.com/material-rounded/96/000000/lock.png" alt='Error dur img loading...'/></label>
+                    <div class="input">
+                        <label for="password">Password</label>
                         <input
                             type="password"
                             name="password"

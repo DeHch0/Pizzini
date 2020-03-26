@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Requester from '../../Requester';
-
+import '../Login/style.css';
 
 const RegisterForm = () => {
 
@@ -43,7 +43,7 @@ const RegisterForm = () => {
                 <h2>Register</h2>
                 <form onSubmit={handleLogin}>
 
-                    <div class="username">
+                    <div class="input">
                         <label for="username"></label>
                         <input
                             type="text"
@@ -54,7 +54,7 @@ const RegisterForm = () => {
                             onChange={handleOnChange} />
                     </div>
 
-                    <div class="email">
+                    <div class="input">
                         <label for="email"></label>
                         <input
                             type="email"
@@ -66,7 +66,7 @@ const RegisterForm = () => {
                         />
                     </div>
 
-                    <div class="password">
+                    <div class="input">
                         <label for="password"></label>
                         <input
                             type="password"
@@ -78,7 +78,7 @@ const RegisterForm = () => {
                         />
                     </div>
 
-                    <div class="password">
+                    <div class="input">
                         <label for="re-password"></label>
                         <input
                             type="re-password"

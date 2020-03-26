@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     balance: {
         type: mongoose.SchemaTypes.Number
     },
+    admin: {
+        type: mongoose.SchemaTypes.Boolean,
+        default: 0
+    },
     // orders: [{
     //     type: mongoose.SchemaType.String
     // }]
