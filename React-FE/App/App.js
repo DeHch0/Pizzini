@@ -89,7 +89,7 @@ export default function App() {
           </Route>
 
           <Route path="/product/view/:id" exact>
-            <ProductDetails bucket={setBucket}/>
+            <ProductDetails isAdmin={isAdmin} bucket={setBucket}/>
           </Route>
 
           <Route path="/product/edit/:id" exact>

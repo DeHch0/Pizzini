@@ -16,6 +16,7 @@ const ProductCard = (para) => {
             </div>
             <div id="product-name">{params.name}</div>
             <div id="product-desc">{description}</div>
+            <div id="product-desc">Цена: {params.price} лв.</div>
             <button className="order-product">Поръчай</button>
             </Link>
     )

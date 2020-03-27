@@ -15,11 +15,12 @@ export default (bucket) => {
         let username = cookie.load('username');
 
     const logout = () => {
-        checkIsLogged();
-        checkIsAdmin();
         sessionStorage.clear();
         cookie.remove('username');
         cookie.remove('auth_cookie');
+        
+        checkIsLogged();
+        checkIsAdmin();
     }
 
     return (

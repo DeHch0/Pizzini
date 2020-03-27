@@ -1,0 +1,35 @@
+main {
+    width: 100%;
+}
+
+.create-product {
+    width: 30%;
+    margin: auto;
+    padding: 3%;
+}
+
+.create-product h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    padding: 0 0 12% 0;
+    color: grey;
+}
+
+.input-field label {
+    font-size: 1.5rem;
+    color:rgb(70, 70, 70);
+    font-weight: 600;
+}
+
+.input-field input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-weight: 400;
+    color: rgb(54, 54, 54);
+    font-size: 1.25rem;
+}

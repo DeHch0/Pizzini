@@ -1,6 +1,7 @@
 import React , { useState, useEffect } from 'react';
 import Requester from '../../Requester'
 import CategoryCard from '../Card';
+import { Link } from 'react-router-dom';
 import './style.css'
 const ReadCategories = () => {
 
@@ -15,14 +16,18 @@ const ReadCategories = () => {
     console.log(params);
 
     return (
-            <table>
-                <tr>
-                    <th>Name</th>
-                    {/* <th>Contact</th>
-                    <th>Country</th> */}
-                </tr>
-            {params ? params.map(elm => <CategoryCard params={elm} />) : <p>No Categories Found !</p>}
-        </table>
+        <div className="container">
+            
+            <Link  to='category/create'><button className='button-category'>Create Category</button></Link>
+                <table>
+                    <tr>
+                        <th>Category Name</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {params ? params.map(elm => <CategoryCard params={elm} />) : <p>No Categories Found !</p>}
+                </table>
+        </div>
     )
 }
 

@@ -1,0 +1,15 @@
+.message-success {
+    background: rgba(37, 184, 0, 0.719);
+    padding: 20px 50px;
+    border-radius: 12px;
+    color:white;
+    font-size: 1.5rem;
+}
+
+.message-error {
+    background: rgba(184, 0, 0, 0.719);
+    padding: 20px 50px;
+    border-radius: 12px;
+    color:white;
+    font-size: 1.5rem;
+}

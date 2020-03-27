@@ -18,7 +18,7 @@ export default () => {
     return (
         <main>
             <div id="section-grid">
-                {params ? params.map(elm => <ProductCard params={elm} /> ) : <p>No Products !</p> }
+                {params ? params.map(elm => <ProductCard params={elm} /> ) : <p className='no-products'>No Products !</p> }
             </div>
         </main>
     )

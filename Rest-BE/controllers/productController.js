@@ -49,12 +49,16 @@ const update = (req, res) => {
     // console.log(req.body);
 
     models.Product.updateOne({_id: id}, {name, description, imageUrl, price, category})
-    .then(data => res.status(204).send('Updated Successfully !').end())
-    .catch(err => res.status(404).send('Error due Update !').end())
+    .then(data => res.send({message: 'Updated Successfully !'}).end())
+    .catch(err => res.status(404).send({message: 'Error due Update !'}).end());
 }
 
 const remove = (req, res) => {
-    
+    let {id} = req.params;
+
+    models.Product.deleteOne({_id :id})
+    .then(data => res.send({message: 'Deleted Successfully !'}).end())
+    .catch(err => res.send({message: 'Problem occured, please try again !'}).end())
 }
 
 module.exports = {

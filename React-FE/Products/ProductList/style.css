@@ -16,7 +16,8 @@ main {
     min-width: 270px;
     margin:0.5%;
     margin-top: 3%;
-    color: #000;
+    margin-bottom: 3%;
+    color: rgb(70, 70, 70);
     /* text-align: left; */
 }
 
@@ -31,7 +32,7 @@ main {
 .order-product
  {
     text-align: center;
-    background-color: tomato;
+    background-color: rgba(145, 71, 2, 0.829);
     border: none;
     color: white;
     padding: 12px 30px;
@@ -39,7 +40,7 @@ main {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4% 0 0 1%;
+    margin: 4% 0 4% 0%;
 }
 
 #product-name {
@@ -54,4 +55,10 @@ main {
     text-align: left;
     font-size: 1rem;
     font-weight: bold;
+}
+
+.no-products {
+    font-size: 4vh;
+    color: rgb(105, 105, 105);
+    font-weight: 600;
 }

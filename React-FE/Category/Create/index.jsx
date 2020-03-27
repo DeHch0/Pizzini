@@ -28,14 +28,12 @@ const CategoryCreate = () => {
     return (
         <main>
         <div class="wrapper">
-
-
             <div class="login-form">
 
                 <h2>Create Category</h2>
                 <form onSubmit={handleLogin}>
 
-                    <div class="name">
+                    <div class="input">
                         <label for="name">Name</label>
                         <input
                             type="text"

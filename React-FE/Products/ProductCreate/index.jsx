@@ -1,6 +1,8 @@
 import React , { useState, useEffect } from 'react';
 import Requester from '../../Requester'
 import cookie from 'react-cookies';
+import './style.css';
+
 const ProductCreate = () => {
 
     const [name, setName] = useState('');
@@ -48,16 +50,13 @@ const ProductCreate = () => {
 
     return (
         <main>
-        <div class="wrapper">
+            <div class="create-product">
 
-
-            <div class="login-form">
-
-                <h2>Login</h2>
+                <h2>Create Product</h2>
                 <form onSubmit={handleLogin}>
 
-                    <div class="name">
-                        <label for="name"><img src="https://img.icons8.com/windows/96/000000/user.png" alt='Error dur img loading...' /></label>
+                    <div class="input-field">
+                        <label for="name">Name</label>
                         <input
                             type="text"
                             id="name"
@@ -67,8 +66,8 @@ const ProductCreate = () => {
                             onChange={handleOnChange} />
                     </div>
 
-                    <div class="description">
-                        <label for="description"><img src="https://img.icons8.com/material-rounded/96/000000/lock.png" alt='Error dur img loading...'/></label>
+                    <div class="input-field">
+                        <label for="description">Description</label>
                         <input
                             type="description"
                             name="description"
@@ -79,8 +78,8 @@ const ProductCreate = () => {
                         />
                     </div>
 
-                    <div class="imageUrl">
-                        <label for="imageUrl"><img src="https://img.icons8.com/material-rounded/96/000000/lock.png" alt='Error dur img loading...'/></label>
+                    <div class="input-field">
+                        <label for="imageUrl">Image URL</label>
                         <input
                             type="imageUrl"
                             name="imageUrl"
@@ -91,8 +90,8 @@ const ProductCreate = () => {
                         />
                     </div>
 
-                    <div class="price">
-                        <label for="price"><img src="https://img.icons8.com/material-rounded/96/000000/lock.png" alt='Error dur img loading...'/></label>
+                    <div class="input-field">
+                        <label for="price">Price</label>
                         <input
                             type="price"
                             name="price"
@@ -102,7 +101,7 @@ const ProductCreate = () => {
                             value={price}
                         />
                     </div>
-
+                    <div class="input-field">
                     <label htmlFor="category">Category: </label>
               {categories ?
               <select name="category" onChange={handleOnChange} required id="category">
@@ -113,15 +112,14 @@ const ProductCreate = () => {
                   
               </select>
               : null }
+              </div>
               <br />
 
 
 
-                    <button className="login-button" type="submit">Login</button>
+                    <button className="login-button" type="submit">Create</button>
                 </form>
             </div>
-        </div>
-
     </main>
 
 

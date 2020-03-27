@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Requester from '../../Requester'
 import cookie from 'react-cookies';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './style.css';
 const ProductDetails = (bucket) => {
     let id = document.URL.substr(document.URL.lastIndexOf('/') + 1);
@@ -47,6 +47,13 @@ const ProductDetails = (bucket) => {
         setPrice(+event.target.value * pricePerOne)
     }
 
+    const removeProduct = (event) => {
+        Requester(`products/${id}`, 'DELETE')
+        .then(data => data.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+    }
+
     useEffect(() => {
         Requester(`products/${id}`, 'GET')
             .then(data => data.json())
@@ -88,11 +95,15 @@ const ProductDetails = (bucket) => {
 
                 <hr/>
             </div>
-            {/* <div className="admin-buttons">
-                <button><Link to={'/product/edit/' + id}>Edit</Link></button>
-                <button><Link to={'/'}>Delete</Link></button>
-            </div> */}
-
+        {   bucket.isAdmin
+             ?
+            <div className="admin-buttons">
+                <Link to={'/product/edit/' + id}><button>Edit</button></Link>
+                <button onClick={removeProduct}>Delete</button>
+            </div>
+            : 
+            null
+        }
         </div>
 
     )

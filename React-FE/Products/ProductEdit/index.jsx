@@ -1,5 +1,6 @@
 import React, {useState , useEffect} from 'react';
 import Requester from '../../Requester';
+import './style.css';
 
 const Edit = () => {
 
@@ -8,10 +9,17 @@ const Edit = () => {
     const [imageUrl , setImageUrl] = useState('');
     const [price , setPrice] = useState('');
     const [category, setCategory] = useState('');
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('');
 
     const [ categories, setCategories ] = useState('');
 
     let id = document.URL.substr(document.URL.lastIndexOf('/') + 1);
+
+    const setResponseMessage = (response, type) => {
+        setMessage(response);
+        setMessageType(type);
+    }
 
     useEffect(() => {
         Requester(`products/${id}`, 'GET')
@@ -28,7 +36,6 @@ const Edit = () => {
         .then(data => setCategories(data));
 
     }, [])
-
     const handleLogin = (event) => {
         event.preventDefault()
 
@@ -42,6 +49,9 @@ const Edit = () => {
         }
 
         Requester('products', 'PUT' , data)
+        .then(data => data.json())
+        .then(data => setResponseMessage(data.message, 'message-success'))
+        .catch(err => setResponseMessage(err.message, 'message-error'))
 
     }
 
@@ -65,6 +75,7 @@ const Edit = () => {
             <div class="login-form">
 
                 <h2>Edit</h2>
+                {message ? <p className={messageType}>{message}</p> : null}
                 <form onSubmit={handleLogin}>
 
                     <div class="name">
