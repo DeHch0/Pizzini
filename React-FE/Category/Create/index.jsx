@@ -1,15 +1,17 @@
 import React , { useState } from 'react';
-import Requester from '../../Requester'
+import Requester from '../../Requester';
+import cookie from 'react-cookies';
 
 const CategoryCreate = () => {
     const [name, setName] = useState('');
-
+    const createdBy = cookie.load('username');
 
     const handleLogin = (event) => {
         event.preventDefault()
 
         let data = {
-            name
+            name,
+            createdBy
         }
         console.log(data);
 

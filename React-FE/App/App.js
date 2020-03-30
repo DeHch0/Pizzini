@@ -20,6 +20,7 @@ import ProductEdit from '../Products/ProductEdit/'
 import CategoryCreate from '../Category/Create';
 import ReadCategories from '../Category/Read';
 import BucketView from '../Bucket/View';
+import ContactView from '../Contact/View';
 
 export default function App() {
 
@@ -30,8 +31,8 @@ export default function App() {
   const login = (data) => {
     userLogin(data)
     .then(res => {
-      cookie.save('username' , res.username);
-      cookie.save('auth_cookie' , res.auth_cookie);
+      cookie.save('username' , res.username, {httpOnly: false});
+      cookie.save('auth_cookie' , res.auth_cookie, {httpOnly: false});
       checkIsLogged();
       checkAdmin();
     })
@@ -126,6 +127,10 @@ export default function App() {
 
           <Route path="/register">
             <RegisterForm />
+          </Route>
+
+          <Route path="/contact">
+            <ContactView />
           </Route>
 
         </Switch>

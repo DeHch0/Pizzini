@@ -16,8 +16,14 @@ export default (bucket) => {
 
     const logout = () => {
         sessionStorage.clear();
-        cookie.remove('username');
-        cookie.remove('auth_cookie');
+        let cookies = document.cookie.split(";");
+        console.log(cookies);
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i];
+            let eqPos = cookie.indexOf("=");
+            let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
         
         checkIsLogged();
         checkIsAdmin();
@@ -34,14 +40,14 @@ export default (bucket) => {
             <div className="user">
                 {isAdmin ?
                 <span>
-                    <Link to='/category'>Categories</Link>
-                    <Link to='/product/create'>Create Product</Link>
+                    <Link to='/category'>Categories</Link> <span className='hr'>|</span>
+                    <Link to='/product/create'>Create Product</Link><span className='hr'>|</span>
                 </span> : null}
                 {isLogged
                 ?
                 <span>
                 <Link to={'user/' + username}>{username}</Link>
-                |
+                <span className='hr'>|</span>
                 <Link onClick={logout}>Logout</Link>
 
                 </span>
@@ -58,10 +64,10 @@ export default (bucket) => {
 
             <div className="navigation">
             <ul>
-                <li><Link to="/">За нас</Link></li>
-                <li><Link to="#">Меню</Link></li>
-                <li><Link to="#">Ресторанти</Link></li>
-                <li><Link to="#">Контакти</Link></li>
+                <li><Link to="/about">За нас</Link></li>
+                <li><Link to="/">Меню</Link></li>
+                <li><Link to="/restaurants">Ресторанти</Link></li>
+                <li><Link to="/contact">Контакти</Link></li>
                 <li><Link to="/bucket">Кошница - {bucket}</Link></li>
             </ul>
             </div>

@@ -11,7 +11,7 @@ const ProductCard = (para) => {
 
     return (
         <Link id="product-card" to={"product/view/" + params._id}>
-            <div id="product-img">
+            <div  id="product-img">
                 <img src={params.imageUrl} alt=""/>
             </div>
             <div id="product-name">{params.name}</div>
