@@ -1,0 +1,17 @@
+.about-container {
+    width: 60%;
+    margin: 2% auto;
+    text-align: center;
+}
+
+.about-heading {
+    font-size: 3rem;
+    color:grey;
+    letter-spacing: 2px;
+}
+
+.about-p {
+    letter-spacing: 1px;
+    text-align: left;
+    font-size: 1.25rem;
+}

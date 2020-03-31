@@ -1,7 +1,9 @@
 const jwt = require('./jwt');
 const dateFormatter = require('./dateFormatter');
+const errorHandler = require('./ErrorHandler')
 
 module.exports = {
     jwt,
-    dateFormatter
+    dateFormatter,
+    errorHandler: errorHandler.errorHandler
 }

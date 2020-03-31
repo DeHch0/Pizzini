@@ -1,5 +1,6 @@
 const models = require('../models');
 const helpers = require('../helpers');
+const {errorHandler} = require('../helpers/ErrorHandler')
 
 const getAll = (req, res) => {
     models.Product.find({})
@@ -36,8 +37,11 @@ const create = async (req, res) => {
 
     if(creatorId !== null) {
     models.Product.create({name, description, imageUrl, category , price,createdBy: creatorId, createdOn: date})
-    .then(data => res.send('created successfully !').end())
-    .catch(data => res.send(data).end())
+    .then(data => res.send({success: 'created successfully !'}).end())
+    .catch(err => {
+        let errInfo = helpers.errorHandler(err);
+        res.status(errInfo.status).send({error: errInfo.message})
+    })
 
     }
 }

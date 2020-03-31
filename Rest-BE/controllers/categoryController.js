@@ -1,4 +1,5 @@
 const models = require('../models')
+const helpers = require('../helpers');
 
 const getAll = (req, res) => {
     models.Category.find({})
@@ -7,9 +8,13 @@ const getAll = (req, res) => {
 }
 
 const create = (req, res) => {
-    let {name} = req.body;
+    let {name, createdBy} = req.body;
 
-    models.Category.create({name})
+    let date = new Date();
+    date = helpers.dateFormatter.format(date);
+
+
+    models.Category.create({name, createdOn: date, createdBy})
     .then(data => res.send('create successfully !').end())
     .catch(data => res.send(data).end())
 }

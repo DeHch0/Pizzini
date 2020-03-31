@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
     name: {
-        type: mongoose.SchemaTypes.String
+        type: mongoose.SchemaTypes.String,
+        unique: true
     },
 
     description: {
-        type: mongoose.SchemaTypes.String
+        type: mongoose.SchemaTypes.String,
     },
 
     category: {

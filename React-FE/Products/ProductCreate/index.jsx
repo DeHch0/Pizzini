@@ -10,13 +10,12 @@ const ProductCreate = () => {
     const [price, setPrice] = useState(0);
     const [imageUrl, setImageUrl] = useState('');
     const [category, setCategory] = useState('');
-    
     const [categories, setCategories] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-    const handleLogin = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault()
         let creator = cookie.select(/\busername?\b/g);
-        console.log(creator);
         let data = {
             name: name,
             price: price,
@@ -25,10 +24,12 @@ const ProductCreate = () => {
             createdBy: creator,
             category
         }
-        console.log(data);
+        // console.log(data);
+
         Requester('products' , 'POST' , data)
-        .then(data => {console.log(data)})
-        .then(err => {console.log(err)})
+        .then(data => data.json())
+        .then(data => setErrorMessage(data.success ? data.success : data.error))
+        .catch(err => setErrorMessage(err.error ? err.error : 'Unexpected Error !'))
     }
 
     const handleOnChange = ({ target }) => {
@@ -51,9 +52,9 @@ const ProductCreate = () => {
     return (
         <main>
             <div class="create-product">
-
+    {errorMessage ? <p>{errorMessage}</p> : null }
                 <h2>Create Product</h2>
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleSubmit}>
 
                     <div class="input-field">
                         <label for="name">Name</label>
