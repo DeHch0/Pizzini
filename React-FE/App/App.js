@@ -4,11 +4,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory
+  Redirect
 } from "react-router-dom";
 
-import { login as userLogin, checkAdmin as auth, checkAdmin } from '../Services/UserService';
-import {protectedRoute, publicRoute, loggedProtectedRoutes} from '../Route/index'
+import { login as userLogin, checkAdmin as auth, checkAdmin, checkIsLogged } from '../Services/UserService';
+import {publicRoute} from '../Route/'
 
 import Header from '../Common/Header';
 import About from '../Common/About';
@@ -28,7 +28,6 @@ export default function App() {
   const [bucketLenght, setBucketLength] = useState(+Object.keys(sessionStorage).length);
   const [isLogged, setIsLogged] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false);
-  // const history = useHistory();
 
   const login = (data, setError,history) => {
     userLogin(data)
@@ -76,51 +75,45 @@ export default function App() {
       <Header checkIsAdmin={checkIsAdmin} checkIsLogged={checkIsLogged} isAdmin={isAdmin} isLogged={isLogged} bucket={bucketLenght}/>
 
         <Switch>
-          
+
                   {/* Public Routes */}
-          {publicRoute('/', < ProductList />)}
+
+          {publicRoute('/', <ProductList />)}
           {publicRoute('about', < About />)}
           {publicRoute('product/view/:id', <ProductDetails isAdmin={isAdmin} bucket={setBucket}/>)}
           {publicRoute('bucket',  <BucketView bucket={setBucket}/>)}
           {publicRoute('contact',  < ContactView />)}
 
+                  {/* Protected Routes */}
+                  {/* Admin Routes */}
 
-          {protectedRoute('opalq', <ProductList/>, isLogged)}
-          {/* {protectedRoute('product/create', <ProductCreate/>, isAdmin)}  */}
-          
+          <Route path="/product/create" exact>
+            { isAdmin ? <ProductCreate/> : <Redirect to='/'/>}
+          </Route>
 
           <Route path="/product/edit/:id" exact>
-            <ProductEdit/>
+            { isAdmin ? <ProductEdit/> : <Redirect to='/'/>}
           </Route>
 
-          <Route path="/orders" exact>
-            {/* <OrdersList/> */}
-          </Route>
-
-          <Route path="/orders/:id" exact>
-            {/* <OrderDetails/> */}
+          <Route path="/category" exact>
+          {isAdmin ? <ReadCategories/>  : () => <Redirect to='/'/>}
           </Route>
 
           <Route path="/category/create" exact>
-            <CategoryCreate/>
-          </Route>
-          
-          <Route path="/category" exact>
-            <ReadCategories/>
+           {isAdmin ? <CategoryCreate/>  : <Redirect to='/' />}
           </Route>
 
-          <Route path="/users" exact>
-            {/* <UseersList/> */}
-          </Route>
+                   {/* Logged user protected routes */}
 
           <Route path="/login">
-            <LoginForm login={login}/>
+            { isLogged  ? <Redirect to='/'/> : <LoginForm login={login}/>}
           </Route>
 
           <Route path="/register">
-            <RegisterForm />
+          { isLogged  ? <Redirect to='/'/> : <RegisterForm />}
           </Route>
 
+        
         </Switch>
       
     </Router>

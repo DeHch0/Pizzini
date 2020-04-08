@@ -7,10 +7,11 @@ const login = (data, setError) => {
     headers: {
       'Accept': '*',
       credentials: 'include',
-      'Content-Type' : 'application/json'
-    }})
-  .then(res => res.json())
-  .catch(err => err.code == '404' ? err.json() : console.log(err))
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .catch(err => err.code === '404' ? err.json() : console.log(err))
 }
 
 // const login = (data) => {
@@ -25,7 +26,6 @@ const login = (data, setError) => {
 //   .then(text => res.status === 200 ? text : Promise.reject(text)));
 // }
 
-
 const checkAdmin = () => {
 
   let username = cookie.load('username');
@@ -35,6 +35,6 @@ const checkAdmin = () => {
 
 
 export {
-    login,
-    checkAdmin
+  login,
+  checkAdmin,
 };
