@@ -8,6 +8,8 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [rePassword, setRePassword] = useState('');
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const handleLogin = (event) => {
         event.preventDefault()
@@ -17,10 +19,17 @@ const RegisterForm = () => {
             password,
         }
         Requester('user/register', 'POST' , data)
-        // console.log(username);
-        // console.log(password);
-        // console.log(rePassword);
-        // console.log('submited');
+        .then(data => data.json())
+        .then(data => {
+            if(data.success) {
+                setSuccess(data.success);
+                setError('');
+            } else if (data.error) {
+                setError(data.error);
+                setSuccess('');
+            }   
+        })
+        .catch(err => console.log('err' + err))
     }
 
     const handleOnChange = ({ target }) => {
@@ -36,7 +45,8 @@ const RegisterForm = () => {
     return (
         <main>
         <div class="wrapper">
-
+    {success ? <div>{success}</div> : null}
+    {error ? <div>{error}</div> : null}
 
             <div class="login-form">
 

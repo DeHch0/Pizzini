@@ -5,14 +5,12 @@ const register = (req, res) => {
 
     let { username, email, password } = req.body;
 
-    console.log(req.body);
-
     return models.User.create({ username, email, password, balance: 0 }).then(() => {
-        console.log('REGISTERED SUCCESSFULLY ! ****');
+        res.send({success: 'Registered successfully !'})
         res.end();
         return
     }).catch(err => {
-        // let field = Object.keys(err.keyValue)[0];
+        let field = Object.keys(err.keyValue)[0];
         if (err.name === 'MongoError' && err.code === 11000) {
             console.log(`${field} is taken !`);
             res
@@ -22,7 +20,7 @@ const register = (req, res) => {
         }
 
         console.log(err);
-        return
+        return;
     });
 }
 
@@ -36,7 +34,7 @@ const login = (req, res) => {
     .then(([user, match]) => {
       if (!match) {
         res
-        .status(401).send('Invalid username or password');
+        .status(401).send({error: 'Invalid username or password'});
         return;
       }
                 const token = jwt.createToken({ id: user._id });

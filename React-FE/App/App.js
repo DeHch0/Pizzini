@@ -4,10 +4,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  // Link
+  useHistory
 } from "react-router-dom";
 
 import { login as userLogin, checkAdmin as auth, checkAdmin } from '../Services/UserService';
+import {protectedRoute, publicRoute, loggedProtectedRoutes} from '../Route/index'
 
 import Header from '../Common/Header';
 import About from '../Common/About';
@@ -27,16 +28,21 @@ export default function App() {
   const [bucketLenght, setBucketLength] = useState(+Object.keys(sessionStorage).length);
   const [isLogged, setIsLogged] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false);
+  // const history = useHistory();
 
-  const login = (data) => {
+  const login = (data, setError,history) => {
     userLogin(data)
     .then(res => {
+      if(res.error) {
+        setError(res.error);
+      } else {
       cookie.save('username' , res.username, {httpOnly: false});
       cookie.save('auth_cookie' , res.auth_cookie, {httpOnly: false});
       checkIsLogged();
       checkAdmin();
-    })
-
+      history.push("/");
+      }})
+    .catch(err => {console.log(err)})
   }
 
   const checkIsLogged = () => {
@@ -70,28 +76,18 @@ export default function App() {
       <Header checkIsAdmin={checkIsAdmin} checkIsLogged={checkIsLogged} isAdmin={isAdmin} isLogged={isLogged} bucket={bucketLenght}/>
 
         <Switch>
+          
+                  {/* Public Routes */}
+          {publicRoute('/', < ProductList />)}
+          {publicRoute('about', < About />)}
+          {publicRoute('product/view/:id', <ProductDetails isAdmin={isAdmin} bucket={setBucket}/>)}
+          {publicRoute('bucket',  <BucketView bucket={setBucket}/>)}
+          {publicRoute('contact',  < ContactView />)}
 
-          <Route path="/" exact>
-        <p>Am i admin {isAdmin ? 'yes' : 'no'}</p>
-        <p>Am i logged {isLogged ? 'yes' : 'no'}</p>
-            < ProductList/>
-          </Route>
 
-          <Route path="/about" exact>
-            < About/>
-          </Route>
-
-          <Route path="/products" exact>
-            {/* <ProductList/> */}
-          </Route>
-
-          <Route path="/product/create" exact>
-            <ProductCreate/>
-          </Route>
-
-          <Route path="/product/view/:id" exact>
-            <ProductDetails isAdmin={isAdmin} bucket={setBucket}/>
-          </Route>
+          {protectedRoute('opalq', <ProductList/>, isLogged)}
+          {/* {protectedRoute('product/create', <ProductCreate/>, isAdmin)}  */}
+          
 
           <Route path="/product/edit/:id" exact>
             <ProductEdit/>
@@ -113,10 +109,6 @@ export default function App() {
             <ReadCategories/>
           </Route>
 
-          <Route path="/bucket" exact>
-            <BucketView bucket={setBucket}/>
-          </Route>
-
           <Route path="/users" exact>
             {/* <UseersList/> */}
           </Route>
@@ -127,10 +119,6 @@ export default function App() {
 
           <Route path="/register">
             <RegisterForm />
-          </Route>
-
-          <Route path="/contact">
-            <ContactView />
           </Route>
 
         </Switch>

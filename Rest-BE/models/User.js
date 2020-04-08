@@ -4,13 +4,15 @@ const saltRounds = 10;
 
 const userSchema = new mongoose.Schema({
     username:{
-        type: mongoose.SchemaTypes.String
+        type: mongoose.SchemaTypes.String,
+        unique: true
     },
     password: {
         type: mongoose.SchemaTypes.String
     },
     email: {
-        type: mongoose.SchemaTypes.String
+        type: mongoose.SchemaTypes.String,
+        unique: true
     },
     balance: {
         type: mongoose.SchemaTypes.Number

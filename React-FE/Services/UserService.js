@@ -1,6 +1,6 @@
 import cookie from 'react-cookies';
 
-const login = (data) => {
+const login = (data, setError) => {
   return fetch(`http://localhost:3000/user/login`, {
     body: JSON.stringify(data),
     method: 'POST',
@@ -9,12 +9,8 @@ const login = (data) => {
       credentials: 'include',
       'Content-Type' : 'application/json'
     }})
-  .then(res => res.status === 200 ? res.json() : Promise.reject(res))
-  // .then(res => res.json())
-  // .then(res => {
-  //   cookie.save('username' , res.username);
-  //   cookie.save('auth_cookie' , res.auth_cookie);
-  // })
+  .then(res => res.json())
+  .catch(err => err.code == '404' ? err.json() : console.log(err))
 }
 
 // const login = (data) => {

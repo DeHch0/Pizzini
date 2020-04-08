@@ -1,13 +1,15 @@
 import React, {useState} from 'react' ;
 // import Requester from '../../Requester';
 import './style.css';
+import { useHistory } from 'react-router-dom';
 
 const LoginForm  = (login) => {
 
     console.log(login);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const [error , setError] = useState(null);
+    const history = useHistory();
     const handleLogin = (event) => {
         event.preventDefault()
 
@@ -16,7 +18,7 @@ const LoginForm  = (login) => {
             password
         }
 
-        login.login(data);
+        login.login(data, setError, history);
     }
 
     const handleOnChange = ({ target }) => {
@@ -29,6 +31,7 @@ const LoginForm  = (login) => {
 
     return (
         <main>
+            {error ? <div>{error}</div> : null}
         <div class="wrapper">
 
 
