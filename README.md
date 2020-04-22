@@ -1,8 +1,8 @@
-# React-project
+# Pizzini
  
 ## Description 
 
- React-project Portfolio is a single page application (SPA)
+ React-project Pizzini is a single page application (SPA)
  
  ## Build with
  
